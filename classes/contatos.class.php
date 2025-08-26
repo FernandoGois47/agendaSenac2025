@@ -65,9 +65,31 @@
             }catch(PDOException $ex) {
                 echo 'ERRO: ' .$ex-> getMessage();
             }
-         }
-        
+            
+        }
+        public function editar($email, $endereco, $rede_social, $telefone, $nome, $dtNasc){
+            if(count($emailExistente) > 0 && $emailExistente['id'] != id){
+                return FALSE;
+            }else {
+                try{
+                        $sql = $this->con->conectar()->prepare("UPDATE * FROM contatos SET email = :email, endereco = :endereco, rede_social = :rede_social, telefone = :telefone, nome = :nome, dtNasc = :dtNasc WHERE id = :id");  
+                            $sql->bindParam(':email',$email);
+                            $sql->bindParam(':endereco', $endereco);
+                            $sql->bindParam(':rede_social', $rede_social);
+                            $sql->bindParam(':telefone', $telefone);
+                            $sql->bindParam(':nome', $nome);
+                            $sql->bindParam(':dtNasc', $dtNasc);
+                            $sql->bindParam(':id', $id);
+
+                    }catch(PDOException $ex) {
+                        echo 'ERRO: ' .$ex-> getMessage();
+                    }
+                }
+        }
+
     }
+        
+    
 
 
 
