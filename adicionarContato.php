@@ -1,6 +1,6 @@
 <?php require'inc/header.inc.php'?>
 <br>
-    <form class="form" method="POST" action="adicionarContatoSubmit.php">
+    <form method="POST" action="adicionarContatoSubmit.php" class="form-contato">
         <h1 class="title">ADICIONAR</h1>
         Email: <br>
         <input type="text" name="email"/><br><br>
@@ -13,7 +13,7 @@
         Nome: <br>
         <input type="text" name="nome"/><br><br>
         Data de Nascimento: <br>
-        <input type="date" name="dtNasc"/><br><br>
+        <input type="date" name="dtNasc" value="<?= htmlspecialchars(date('Y-m-d', strtotime($info['dtNasc']))) ?>"><br>
 
 
         <input type="submit" name="btCadastrar" value="ADICIONAR"/>

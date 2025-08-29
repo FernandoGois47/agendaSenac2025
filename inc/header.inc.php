@@ -6,16 +6,14 @@
     <title>AgendaSenac2025</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<div class="">
 <body class="fundo">
-
-    <header>
+    <header class="main-header">
         <div class="header-content">
-            <h1 class="header-title">Bem-vindo</h1>
-            <p class="header-subtitle">Quem leu é viado!</p>
-            <a href="#" class="header-button">Explorar</a>
+            <h1 class="header-title">Agenda Senac 2025</h1>
+            <nav>
+                <a href="index.php" class="header-button">Início</a>
+                <a href="adicionarContato.php" class="header-button">Adicionar Contato</a>
+            </nav>
         </div>
         <div class="wave"></div>
     </header>
-
-    

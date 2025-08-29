@@ -1,13 +1,20 @@
 <?php include 'inc/header.inc.php'; 
 include 'classes/contatos.class.php';
+include 'classes/funcoes.class.php';
 
 $contato = new Contatos();
+$fn = new Funcoes();
 ?>
 
-<h1>Agenda Senac 2025</h1>
-<button><a href="adicionarContato.php">ADICIONAR</a></button>
+<h1 class="title" style="text-align:center; margin-top:30px;">Agenda Senac 2025</h1>
+<div style="text-align:center; margin-bottom:30px;">
+    <button class="btn-adicionar">
+        <a href="adicionarContato.php" style="color:inherit; text-decoration:none;">ADICIONAR</a>
+    </button>
+</div>
 
-<table border="2" width="100%">
+<div class="table-container" style="max-width:1000px; margin:auto;">
+<table class="agenda-table" border="0" width="100%">
     <thead>
         <tr>
             <th>ID</th>
@@ -17,42 +24,30 @@ $contato = new Contatos();
             <th>Telefone</th>
             <th>Nome</th>
             <th>Data de Nascimento</th>
+            <th>Ações</th>
         </tr>
     </thead>
+    <tbody>
 <?php
 $lista = $contato->listar();
 foreach($lista as $item):
 ?>
-    <tbody>
         <tr>
-            <td><?php echo $item['id'];?></td>
-            <td><?php echo $item['email'];?></td>
-            <td><?php echo $item['endereco'];?></td>
-            <td><?php echo $item['rede_social'];?></td>
-            <td><?php echo $item['telefone'];?></td>
-            <td><?php echo $item['nome'];?></td>
-            <td><?php echo $item['dtNasc'];?></td>
+            <td><?php echo ($item['id']);?></td>
+            <td><?php echo ($item['email']);?></td>
+            <td><?php echo ($item['endereco']);?></td>
+            <td><?php echo ($item['rede_social']);?></td>
+            <td><?php echo ($item['telefone']);?></td>
+            <td><?php echo ($item['nome']);?></td>
+            <td><?php echo $fn->dtNasc($item['dtNasc'],2);?></td>
             <td>
-                <a href="editar.Contato.php">Editar</a>
-                <a href="#">| Excluir</a>
+                <button class="btn-editar" onclick="location.href='editar.Contato.php?id=<?php echo $item['id']; ?>'">Editar</button>
+                <button class="btn-excluir" onclick="location.href='#'">Excluir</button>
             </td>
         </tr>
+<?php endforeach; ?>
     </tbody>
-    <?php
-    endforeach;
-    ?>
 </table>
-
-<!-- class Contatos {
-        private $id;
-        private $email;
-        private $endereco;
-        private $rede_social;
-        private $telefone;
-        private $nome;
-        private $dtNasc; -->
-
+</div>
 
 <?php include 'inc/footer.inc.php'; ?>
-
-    

@@ -1,9 +1,8 @@
-<footer class="container_footer">
-    <h3 class="text_footer">Final da agenda Senac 2025</h3>
-
-
+<footer class="main-footer">
+    <div class="footer-content">
+        <span>&copy; <?php echo date('Y'); ?> Agenda Senac 2025</span>
+        <span>Desenvolvido por Fernando de Gois</span>
+    </div>
 </footer>
-
 </body>
-</div>
 </html>
