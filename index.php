@@ -41,8 +41,8 @@ foreach($lista as $item):
             <td><?php echo ($item['nome']);?></td>
             <td><?php echo $fn->dtNasc($item['dtNasc'],2);?></td>
             <td>
-                <button class="btn-editar" onclick="location.href='editar.Contato.php?id=<?php echo $item['id']; ?>'">Editar</button>
-                <button class="btn-excluir" onclick="location.href='#'">Excluir</button>
+                <button class="btn-editar" onclick="location.href='editarContato.php?id=<?php echo $item['id']; ?>'">Editar</button>
+                <button class="btn-excluir" onclick="location.href='excluirContato.php?id=<?php echo $item['id']; ?>'">Excluir</button>
             </td>
         </tr>
 <?php endforeach; ?>
