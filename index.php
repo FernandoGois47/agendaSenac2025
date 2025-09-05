@@ -18,11 +18,11 @@ $fn = new Funcoes();
     <thead>
         <tr>
             <th>ID</th>
+            <th>Nome</th>
             <th>E-mail</th>
             <th>Endereço</th>
             <th>Rede Social</th>
             <th>Telefone</th>
-            <th>Nome</th>
             <th>Data de Nascimento</th>
             <th>Ações</th>
         </tr>
@@ -34,11 +34,11 @@ foreach($lista as $item):
 ?>
         <tr>
             <td><?php echo ($item['id']);?></td>
+            <td><?php echo ($item['nome']);?></td>
             <td><?php echo ($item['email']);?></td>
             <td><?php echo ($item['endereco']);?></td>
             <td><?php echo ($item['rede_social']);?></td>
             <td><?php echo ($item['telefone']);?></td>
-            <td><?php echo ($item['nome']);?></td>
             <td><?php echo $fn->dtNasc($item['dtNasc'],2);?></td>
             <td>
                 <button class="btn-editar" onclick="location.href='editarContato.php?id=<?php echo $item['id']; ?>'">Editar</button>
