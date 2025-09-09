@@ -1,5 +1,10 @@
 <?php require'inc/header.inc.php'?>
 <br>
+<div style="text-align:center; margin-bottom:30px;" >
+    <nav>
+        <a  href="index.php" class="header-button">Início</a>
+    </nav>
+</div>
     <form method="POST" action="adicionarContatoSubmit.php" class="form-contato">
         <h1 class="title">ADICIONAR</h1>
         Email: <br>

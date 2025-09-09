@@ -16,7 +16,11 @@ if (!empty($_GET['id'])) {
     exit;
 }
 ?>
-
+<div style="text-align:center; margin-bottom:30px;" >
+    <nav>
+        <a  href="index.php" class="header-button">Início</a>
+    </nav>
+</div>
 <form method="POST" action="editarContatoSubmit.php" class="form-contato">
     <h1 class="title">EDITAR CONTATO</h1>
     <input type="hidden" name="id" value="<?= htmlspecialchars($info['id']) ?>">
@@ -35,6 +39,6 @@ if (!empty($_GET['id'])) {
     <input type="submit" name="btCadastrar" value="SALVAR" class="btn-adicionar"/>
 </form>
 
-$fn->dtNasc($item['dtNasc'],2
+
 
 <?php require 'inc/footer.inc.php'?>

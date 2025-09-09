@@ -154,12 +154,12 @@ nav {
     outline: none;
 }
 
-.btn-adicionar {
+.btn-adicionar, .form-contato input[type="submit"]  {
     background: #764ba2;
     color: #fff;
 }
 
-.btn-adicionar:hover {
+.form-contato input[type="submit"] , .btn-adicionar:hover {
     background: #667eea;
 }
 
@@ -202,7 +202,8 @@ nav {
 }
 
 .form-contato input[type="text"],
-.form-contato input[type="email"] {
+.form-contato input[type="email"],
+.form-contato input[type="password"]  {
     width: 100%;
     padding: 8px 10px;
     border: 1px solid #ddd;
@@ -212,14 +213,15 @@ nav {
     transition: border 0.2s;
 }
 
-.form-contato input[type="text"]:focus,
-.form-contato input[type="email"]:focus {
+.form-contato input[type="text"],
+.form-contato input[type="email"],
+.form-contato input[type="password"]  {
     border: 1.5px solid #764ba2;
     outline: none;
 }
 
-.form-contato input[type="submit"].btn-adicionar {
-    width: 100%;
+.form-contato input[type="submit"] {
+    width: 70%;
     margin-top: 12px;
     font-size: 1.1rem;
 }

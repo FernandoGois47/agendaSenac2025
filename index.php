@@ -11,6 +11,10 @@ $fn = new Funcoes();
     <button class="btn-adicionar">
         <a href="adicionarContato.php" style="color:inherit; text-decoration:none;">ADICIONAR</a>
     </button>
+    <nav>
+        <a href="index.php" class="header-button">Início</a>
+        <a href="adicionarContato.php" class="header-button">Adicionar Contato</a>
+    </nav>
 </div>
 
 <div class="table-container" style="max-width:1000px; margin:auto;">
