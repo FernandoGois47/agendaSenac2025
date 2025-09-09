@@ -23,6 +23,15 @@ body.fundo {
     flex-direction: column;
     align-items: center;
 }
+.aprovacao {
+    width: 100vh;
+    height: 65vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .header-title {
     font-size: 2.2rem;
@@ -253,6 +262,11 @@ nav {
         padding: 18px 8px;
     } */
     .header-content, .footer-content {
+        max-width: 90vw;
+    }
+}
+@media (max-width: 700px) {
+    .aprovacao{
         max-width: 90vw;
     }
 }

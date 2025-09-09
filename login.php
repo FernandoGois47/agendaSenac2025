@@ -3,7 +3,7 @@ require './inc/header.inc.php'
 ?>
 <!-- nome,email, senha, permissoes-->
 
-<form method="POST" action="adicionarContatoSubmit.php" class="form-contato">
+<form method="POST">
     <h1 class="title">Login</h1>
     E-mail: <br>
     <input type="email" name="email" autocomplete="off"><br><br>

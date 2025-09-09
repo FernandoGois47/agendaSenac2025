@@ -3,7 +3,7 @@ require './inc/header.inc.php'
 ?>
 <!-- nome,email, senha, permissoes-->
 
-<form method="POST" action="adicionarContatoSubmit.php" class="form-contato">
+<form method="POST">
     <h1 class="title">Cadastre-se</h1>
     <label>Nome: </label>
     <input type="text" name="nome"/><br><br>
@@ -16,7 +16,7 @@ require './inc/header.inc.php'
 </form>
 
 
-
+<?php require './classes/cadastrar.php'?>
 
 
 
