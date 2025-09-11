@@ -1,5 +1,6 @@
  <?php
 
+require 'conexao.class.php';
 //nome,email, senha, permissoes
 
  Class Usuario {
@@ -96,10 +97,23 @@
             }
         }
     }
-    public function deletar($id) {
-        $sql = $this->pdo->conectar()->prepare("DELETE FROM usuario WHERE id = :id");
-        $sql->bindValue(':id', $id);
-        $sql->execute();
+    // Método para fazer login (versão alternativa)
+    public function login($email, $senha) {
+        try {
+            $senha_md5 = md5($senha);
+            $sql = $this->pdo->conectar()->prepare("SELECT * FROM usuario WHERE email = :email AND senha = :senha");
+            $sql->bindParam(':email', $email, PDO::PARAM_STR);
+            $sql->bindParam(':senha', $senha_md5, PDO::PARAM_STR);
+            $sql->execute();
+            
+            if($sql->rowCount() > 0) {
+                return $sql->fetch(PDO::FETCH_ASSOC); // Retorna os dados do usuário
+            } else {
+                return false; // Login falhou
+            }
+        } catch(PDOException $ex) {
+            return 'ERRO: '.$ex->getMessage();
+        }
     }
  }
  
