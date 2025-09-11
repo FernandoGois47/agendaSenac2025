@@ -1,5 +1,5 @@
 <?php
-require './inc/header.inc.php'
+require '../inc/header.inc.php'
 ?>
 <!-- nome,email, senha, permissoes-->
 
@@ -27,5 +27,5 @@ require './inc/header.inc.php'
 
 
 <?php
-require './inc/footer.inc.php'
+require '../inc/footer.inc.php'
 ?>

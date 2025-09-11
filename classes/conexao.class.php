@@ -24,7 +24,7 @@ class Conexao {
                 {
                     self:: $pdo = new PDO("mysql:host=".$this->servidor.";dbname=".$this->banco,$this->usuario,$this->senha);
                 }
-                //echo "Deu BoaaaAAaa!!";
+                // echo "Deu BoaaaAAaa!!";
             return self::$pdo;
         }
         catch(PDOException $ex) //caso o try não conseguir o catch vai apresentar uma mensagem do que esta errado
@@ -33,5 +33,8 @@ class Conexao {
         }
     }
 }
+
+$con = new Conexao();
+$con->conectar();
 
 ?>

@@ -5,67 +5,102 @@
  Class Usuario {
     //atributos
 
+    private $id;
+    private $nome;
+    private $email;
+    private $senha;
+    private $permissoes;
+
     private $pdo;
 
 
 
     //metodos
     //construtor
-    public function __construct($dbname, $host, $usuario, $senha )
-    {
-       try{
-            $this->pdo = new PDO("mysql:dbname=$dbname; host=$host", $usuario, $senha);
-            
-       } catch (PDOException $e){
-            echo 'Erro com DB: '.$e->getMessage(); // erro do banco de dados
-       } catch (Exception $e){
-            echo 'Erro: '.$e->getMessage(); //erro geral
-       }
+    public function __construct() {
+        $this->pdo = new Conexao();
+    }
+
+    //existencia do email
+    private function existeEmail($email) {
+        $sql = $this->pdo->conectar()->prepare("SELECT id FROM usuario WHERE email = :email"); // puxa o email no banco pra ver se já existe um contato com o email
+        $sql->bindParam(':email', $email, PDO::PARAM_STR);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $array = $sql->fetch(); // se encontrar, retornar o email encontrado
+        } else{
+            $array = array(); //se nao tem, pode atribuir para a agenda
+        }
+        return $array;
     }
 
 
     //cadastrar
-    public function cadastrar($nome, $email, $senha){
-        //antes de cadastrar verificar se o email ja existe
-        $cmd = $this->pdo->prepare("SELECT id FROM usuario WHERE email = :e");
-        $cmd-> bindValue(":e",$email);
-        $cmd->execute();
-        //veio o id é pq o email ja ta cadastrado
-        if ($cmd->rowCount() > 0){
-            return false;
-        }else{
-            $cmd = $this->pdo-> prepare("INSERT INTO usuario (nome, email, senha) values (:n, :e, :s)");
-            $cmd-> bindValue(":n",$nome);
-            $cmd-> bindValue(":e",$email);
-            $cmd-> bindValue(":s",md5($senha)); //criptografia md5
-            $cmd->execute();
-            return true;
-        }
-        
-    }
-    //logar
-    public function logar($email,$senha){
-        $cmd = $this->pdo->prepare("SELECT * from usuario WHERE email = :e AND senha = :s");
-        $cmd->bindValue(":e",$email);
-        $cmd->bindValue(":s",md5($senha));
-        $cmd->execute();
-        if($cmd->rowCount()>0){ //se foi encontrado
-            $dados = $cmd->fetch();
-            session_start();
-            if($dados['id'] == 1){
-                //caso o id for 1, ele é o administrador
-                $_SESSION['id_master'] = 1;                 
-            }else{
-                //caso não, ele é normal
-                $_SESSION['id_usuario'] = $dados['id'];
+    public function adicionar($email, $nome, $senha, $permissoes){
+        $emailExistente = $this->existeEmail($email);
+        if (count($emailExistente) == 0) {
+            try {
+                $this->nome = $nome;
+                $this->email = $email;
+                $this->senha = md5($senha);
+                $this->permissoes = $permissoes;
+
+
+                $sql = $this->pdo->conectar()->prepare("INSERT INTO usuario(nome,  email, senha, permissoes) VALUES (:nome, :email, :senha, :permissoes)");
+                $sql->bindParam(":nome",             $this->nome,       PDO::PARAM_STR);
+                $sql->bindParam(":email",           $this->email,       PDO::PARAM_STR);
+                $sql->bindParam(":senha",           $this->senha,       PDO::PARAM_STR);
+                $sql->bindParam(":permissoes",      $this->permissoes,  PDO::PARAM_STR);
+                $sql->execute();
+                return TRUE;
+
+            } catch(PDOException $ex) {
+                return 'ERRO: '.$ex->getMessage();
             }
-            return true; //encontrado
-        }else{
-            return false; //não encontrado
+        } else {
+            return False;
+        }
+    }
+    //listar
+    public function listar() {
+        try{
+            $sql = $this->pdo->conectar()->prepare("SELECT * FROM usuario");
+            $sql->execute();
+            return $sql->fetchAll();
+
+
+        }
+        catch (PDOException $ex){
+            echo 'ERRO'.$ex->getMessage();
         }
     }
 
-
+    public function editar( $nome, $email,  $senha, $permissoes, $id) {
+        $emailExistente = $this->existeEmail($email);
+        if(count($emailExistente) > 0 && $emailExistente['id'] != $id){
+            return FALSE;
+        }
+        else {
+            try{
+                $sql = $this->pdo->conectar()->prepare("UPDATE usuario SET nome = :nome,email = :email, senha = :senha, permissoes = :permissoes WHERE id = :id");
+                $sql->bindParam(":nome", $nome, PDO::PARAM_STR);
+                $sql->bindParam(":email", $email, PDO::PARAM_STR);
+                $sql->bindParam(":senha", $senha, PDO::PARAM_STR);
+                $sql->bindParam(":permissoes", $permissoes, PDO::PARAM_STR);
+                $sql->bindParam(":id", $id, PDO::PARAM_STR);
+                $sql->execute();
+                return TRUE;
+            } catch(PDOException $ex){
+                echo "ERRO: ".$ex->getMessage();
+            }
+        }
+    }
+    public function deletar($id) {
+        $sql = $this->pdo->conectar()->prepare("DELETE FROM usuario WHERE id = :id");
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+    }
  }
  
  
