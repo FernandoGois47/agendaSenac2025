@@ -1,6 +1,6 @@
 <?php
 
-require '../inc/header.inc.php';
+require '../inc/header.inc2.php';
 ?>
 
 <div class="aprovacao">

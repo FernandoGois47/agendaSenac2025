@@ -10,7 +10,7 @@
 <body class="fundo">
 <header class="main-header">
     <div class="header-content">
-        <img class="logo" src="SENAC.png">  
+        <img class="logo" src="../SENAC.png">  
         <h1 class="header-title">Agenda Senac 2025</h1>
     </div>
 </header>

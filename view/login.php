@@ -2,7 +2,7 @@
 // Iniciar sessão no topo
 session_start();
 
-require '../inc/header.inc.php';
+require '../inc/header.inc2.php';
 require '../classes/usuario.class.php';
 
 // Exibir mensagem de cadastro se existir

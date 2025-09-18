@@ -1,5 +1,5 @@
 <?php
-require '../inc/header.inc.php';
+require '../inc/header.inc2.php';
 require '../classes/usuario.class.php';
 
 // Iniciar sessão
